@@ -70,7 +70,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
     public static void delete(int position){
         deletePosition = position;
     }
-
+    private int count=0;
 
     /**
      * Creates a ForecastAdapter.
@@ -141,7 +141,6 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
         }else {
             mCursor.moveToPosition(position);
         }
-
 
             /****************
              * Weather Icon *
@@ -237,7 +236,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
     @Override
     public int getItemCount() {
         if (null == mCursor) return 0;
-        return mCursor.getCount();
+        return mCursor.getCount();//-count;
     }
 
     /**

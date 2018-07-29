@@ -38,6 +38,8 @@ import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.data.WeatherContract;
 import com.example.android.sunshine.sync.SunshineSyncUtils;
 
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,
         ForecastAdapter.ForecastAdapterOnClickHandler {
@@ -161,8 +163,18 @@ public class MainActivity extends AppCompatActivity implements
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 int fromPosition = viewHolder.getAdapterPosition();
                 int toPosition = target.getAdapterPosition();
-
+               //if (fromPosition < toPosition) {
+               //    for (int i = fromPosition; i < toPosition; i++) {
+               //        Collections.swap( , i, i + 1);
+               //    }
+               //} else {
+               //    for (int i = fromPosition; i > toPosition; i--) {
+               //        Collections.swap( , i, i - 1);
+               //    }
+               //}
+                
                 mForecastAdapter.notifyItemMoved(fromPosition, toPosition);
+                mForecastAdapter.notifyDataSetChanged();
                 return true;
 
             }
@@ -171,7 +183,8 @@ public class MainActivity extends AppCompatActivity implements
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 ForecastAdapter.delete(position);
-
+                // .remove(position);
+                //mForecastAdapter.notifyItemRemoved(position);
                 mForecastAdapter.notifyDataSetChanged();
             }
         }).attachToRecyclerView(mRecyclerView);
