@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements
                //        Collections.swap( , i, i - 1);
                //    }
                //}
-                
+
                 mForecastAdapter.notifyItemMoved(fromPosition, toPosition);
                 mForecastAdapter.notifyDataSetChanged();
                 return true;
@@ -182,9 +182,16 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                ForecastAdapter.delete(position);
-                // .remove(position);
-                //mForecastAdapter.notifyItemRemoved(position);
+                //ForecastAdapter.delete(position);
+                mForecastAdapter.wId.remove(position);
+                mForecastAdapter.dateS.remove(position);
+                mForecastAdapter.disg.remove(position);
+                mForecastAdapter.disgA.remove(position);
+                mForecastAdapter.highS.remove(position);
+                mForecastAdapter.highA.remove(position);
+                mForecastAdapter.lowS.remove(position);
+                mForecastAdapter.lowA.remove(position);
+                mForecastAdapter.notifyItemRemoved(position);
                 mForecastAdapter.notifyDataSetChanged();
             }
         }).attachToRecyclerView(mRecyclerView);
